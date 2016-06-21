@@ -1,10 +1,11 @@
 import React from 'react';
+import {Pager} from 'react-bootstrap';
 
 class App extends React.Component {
     render() {
         return (
-            <div>
-                <h1>Unofficial GitHub Browser v0.1</h1>
+            <div className="app">
+                    <Pager><h1>GitHub Rail Issues</h1></Pager>
                 {this.props.children}
             </div>
         );

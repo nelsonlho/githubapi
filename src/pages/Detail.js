@@ -1,8 +1,7 @@
 import React from 'react';
 import ajax from 'superagent';
+import { IndexLink, Link } from 'react-router';
 
-
-import { Link } from 'react-router';
 
 export default class Detail extends React.Component {
     constructor(props) {
@@ -84,6 +83,9 @@ export default class Detail extends React.Component {
         }
 
         return (<div>
+            <p>You are here: <IndexLink to="/" activeClassName="active">Home</IndexLink>
+            > {this.props.params.repo}</p>
+
             <button onClick={this.selectMode.bind(this, 'commits')}>Show Commits</button>
             <button onClick={this.selectMode.bind(this, 'forks')}>Show Forks</button>
             <button onClick={this.selectMode.bind(this, 'pulls')}>Show Pulls</button>

@@ -1,41 +1,46 @@
 import React from 'react';
 import ajax from 'superagent';
 
-export default class User extends React.Component {
-  constructor(props) {
-      super(props);
+import { IndexLink, Link } from 'react-router';
 
-      this.state = {
-          users: []
-      };
-  }
+class User extends React.Component {
+    constructor(props) {
+        super(props);
 
-  componentWillMount(){
-    const baseURL = 'https://api.github.com/users';
-    ajax.get(`${baseURL}/${this.props.params.user}/events`)
-        .end((error, response) => {
-            if (!error && response) {
-                this.setState({ [type]: response.body });
-            } else {
-                console.log(`Error fetching ${type}`, error);
+        this.state = {
+            events: []
+        };
+    }
+
+    componentWillMount() {
+        ajax.get(`https://api.github.com/users/${this.props.params.user}/events`)
+            .end((error, response) => {
+                if (!error && response) {
+                    this.setState({ events: response.body });
+                } else {
+                    console.log(`Error fetching user data.`, error);
+                }
             }
-        }
-    );
- }
+        );
+    }
 
- render() {
-      return <ul>
-          {this.state.events.map((event, index) => {
-              const eventType = event.type;
-              const repoName = event.repo.name;
-              const creationDate = event.created_at;
+    render() {
+      return (<div>
+        <p>You are here:
+        <IndexLink to="/" activeClassName="active">Home</IndexLink>
+        > {this.props.params.user}</p>
+        <ul>
+        {this.state.events.map((event, index) => {
+            const eventType = event.type;
+            const repoName = event.repo.name;
+            const creationDate = event.created_at;
 
-              return (<li key={index}>
-                  <strong>{repoName}</strong>: {eventType}
-                  at {creationDate}.
-              </li>);
-          })}
-      </ul>;
-  }
-
+            return (<li key={index}><strong>{repoName}</strong>: {eventType}
+                at {creationDate}.
+            </li>);
+        })}
+        </ul>
+    </div>)};
 }
+
+export default User;

@@ -1,6 +1,11 @@
+
+
+
+
 body {
     line-height: 1.428571429;
     font-family: sans-serif;
+    background-color: #80ffff;
 }
 
 h1 {
@@ -23,6 +28,17 @@ a.active {
     color: black;
 }
 
+img{
+    width: 40px;
+    height: 40px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+
+
 button {
     padding: 5px 20px;
     background-color: white;
@@ -32,6 +48,27 @@ button {
     outline-width: 0;
 }
 
-button:active {
-    background-color: #dcdcdc;
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+  display: inline;
+}
+
+.username{
+  font-size: 12px;
+}
+
+.issue{
+  background-color: white;
+  border-radius: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-bottom: 30px;
 }
