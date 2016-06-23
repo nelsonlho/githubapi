@@ -11,8 +11,8 @@ import IssueDetail from './pages/IssueDetail';
 const routes = (
     <Route path="/" component={ App }>
          <IndexRoute component={ Issue } />
-         <Route path="issue/:issue_id" component={ IssueDetail } />
-      	 
+         <Route path="issue/:issueID" component={ IssueDetail } />
+
 
     </Route>
 );
