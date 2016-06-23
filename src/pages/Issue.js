@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Row, Col, Pager, PageItem} from 'react-bootstrap';
 import {Link } from 'react-router';
 
-const pageSize = 10;
+const pageSize = 25;
 
 
 
@@ -79,7 +79,7 @@ export default class Issue extends React.Component {
             color: fontColor,
 
           }
-          return <div className="labels"><span style={labelStyle} key="labelKey"><li>{label.name}</li></span></div>;
+          return <span className="labels"><span style={labelStyle} key="labelKey"><li>{label.name}</li></span></span>;
         });
         let maxLength = 140;
         let summary = issue.body;
@@ -118,14 +118,15 @@ export default class Issue extends React.Component {
 
     const firstButton = firstPage > -1 ? <ButtonLink text="First" onClick={()=>this.goToPage(0)}/>  : <span/>;
     const lastButton = lastPage > -1 ? <ButtonLink text="Last" onClick={()=>this.goToPage(lastPage)}/>  : <span/>;
-    const prevButton = prevPage > -1 ? <ButtonLink text="Previous" onClick={()=>this.goToPage(prevPage)}/>  : <span/>;
+    const prevButton = prevPage > -1 ? <ButtonLink text="Prev" onClick={()=>this.goToPage(prevPage)}/>  : <span/>;
     const nextButton = nextPage  > -1 ? <ButtonLink text="Next" onClick={()=>this.goToPage(nextPage)}/>  : <span/>;
     const currentPageButton = <ButtonLink text={currentPage+ 1} onClick={()=>this.goToPage(currentPage)}/> ;
 
-    return <div>
-       Number of pages- {numberOfPages}
+    return <div className="pagin">
 
-       {firstButton}{prevButton}{currentPageButton}{nextButton}{lastButton}
+       <h4>Number of pages- {numberOfPages}</h4>
+       <div><strong>Current Page: </strong>{currentPageButton}
+        <strong> Go To: </strong>{firstButton}{prevButton}{nextButton}{lastButton}</div>
     </div>
  }
 
@@ -136,20 +137,15 @@ export default class Issue extends React.Component {
       return <span/>;
     }
 
-
     const itemsPerPage = 25;
     let content = this.renderIssues();
-
-
 
     return (<div>{this.renderPagination()}
             <Grid>
             <Row>
              <Col xsHidden md={3} />
               <Col xs={8} md={6} >
-
                 <div>{content}</div>
-
               </Col>
               <Col xsHidden md={3} />
               </Row>

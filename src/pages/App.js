@@ -27,12 +27,12 @@ class App extends React.Component {
     render() {
     	const {loading, issues} = this.state;
     	if(loading){
-    		return <div className="app_loading"> Loading</div>;
+    		return <div className="loading"><Pager>Loading...</Pager></div>;
     	}
         return (
             <div className="app">
                     <a href="/"><Pager><h1>GitHub Rail Issues</h1></Pager></a>
-        			<div>{  React.cloneElement( this.props.children, { issues: this.state.issues })}</div>
+        			<div>{React.cloneElement( this.props.children, { issues: this.state.issues })}</div>
             </div>
         );
     }

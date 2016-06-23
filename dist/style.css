@@ -58,7 +58,9 @@ ul {
 li {
   display: inline;
 }
-
+.loading{
+  font-size: 25px;
+}
 .username{
   font-size: 12px;
 }
@@ -71,6 +73,10 @@ li {
   padding-left: 25px;
   padding-right: 25px;
   margin-bottom: 30px;
+}
+
+.pagin{
+  margin-left: 30%;
 }
 
 .labels{
