@@ -2,6 +2,7 @@ import * as chai from 'chai';
 import {shallow, mount} from 'enzyme';
 import List from '../src/pages/List';
 import App from '../src/pages/App';
+import nock from 'nock';
 
 describe('Components',function(){
 	describe('App component',function(){
@@ -40,6 +41,18 @@ describe('Components',function(){
 			const wrapper = shallow(<App><div/></App>);
 			wrapper.setState({loading:false})
 			chai.expect(wrapper.find(".app_loading")).to.have.length(0);
+		});
+
+		it('sets state correctly after mount ',function(){
+			
+			nock(`https://api.github.com/repos/rails/rails`).persist().get('/issues').reply(200,{
+				body : 'This is body'
+			});
+			const wrapper = mount(<App><div/></App>);
+			
+			wrapper.instance().fetchData(function(){
+				 chai.expect(wrapper.state().issues).to.equal('This is body');			
+			})
 		});
 
 	});
