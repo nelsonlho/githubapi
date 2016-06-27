@@ -22,7 +22,7 @@ describe('Components',function(){
 		it('renders loading class when loading key in state is true ',function(){
 			const wrapper = shallow(<App><div/></App>);
 			wrapper.setState({loading:true})
-			chai.expect(wrapper.find(".app_loading")).to.have.length(1);
+			chai.expect(wrapper.find(".loading")).to.have.length(1);
 		});
 
 		it('does not render app class when loading key in state is true ',function(){

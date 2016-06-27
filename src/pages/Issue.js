@@ -79,7 +79,7 @@ export default class Issue extends React.Component {
             color: fontColor,
 
           }
-          return <span className="labels"><span style={labelStyle} key="labelKey"><li>{label.name}</li></span></span>;
+          return <li className="labels" style={labelStyle} key="labelKey">{label.name}</li>;
         });
         let maxLength = 140;
         let summary = issue.body;
