@@ -14,6 +14,7 @@ class IssueDetail extends React.Component {
     } 
 
     const issue = issues.find(i=>i.id === parseInt(issue_id));
+    console.log(issue);
     if(!issue){
         return <p>Not Found </p>;
     } 

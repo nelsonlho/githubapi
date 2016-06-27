@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start":"webpack-dev-server",
     "test": "mocha --compilers js:babel-core/register __tests__ --watch --require __tests__/setup.js"
   },
   "keywords": [],
