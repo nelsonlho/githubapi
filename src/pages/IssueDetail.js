@@ -40,6 +40,7 @@ class IssueDetail extends React.Component {
        }
     };
  
+
   fetchComments(url){
     ajax.get(url)
           .end((error, response) => {
@@ -52,6 +53,9 @@ class IssueDetail extends React.Component {
           }
       );
   }
+
+
+
   render() {
     console.log(this.props.params);
     const {issueID} = this.props.params;
@@ -66,18 +70,26 @@ class IssueDetail extends React.Component {
       return <p>Issue Not Found </p>;
     }
     
+    const {body} = issue;
 
-    let username = this.parseUsername(issue.body);
+    let username = this.parseUsername(body);
     
-    let comments_block = <span/>;
+
+    let commentsBlock = <span/>;
+
 
     if(comments){
-      comments_block = <div className="comments col-md-12">
-      <ul>{comments.length ? comments.map((comment,index)=>{
-           return <li key={index} ><p><a href={`https://github.com/${comment.user.login}`}>{comment.user.login}</a></p>
-           <p>{comment.body}</p>
-           </li>
-            }) : "No comments" }
+      commentsBlock =
+        <div>
+          <h3>Comments</h3>
+          <ul>{comments.length ? comments.map((comment,index)=>{
+            return <div className="comments col-md-12">
+                      <li key={index} ><p><a href={`https://github.com/${comment.user.login}`}>{comment.user.login}</a></p>
+                      <p>{comment.body}</p>
+
+                      </li>
+                    </div>
+         }) : <h5>No comments</h5> }
        </ul>
     </div>
     }
@@ -88,7 +100,8 @@ class IssueDetail extends React.Component {
         <div className="col-md-12" >
         <div className="issue issueDetail">
            <h3>{issue.title}</h3>
-           <div>{username}</div>
+           <p>{username}</p>
+           <div className="issueBody">{body}</div>
            <ul>{issue.labels.map((label,index)=>{
               let fontColor = 'black';
               if (label.name === "activerecord" || label.name === "needs work"
@@ -104,14 +117,10 @@ class IssueDetail extends React.Component {
           </ul>
           <img src={issue.user.avatar_url}/>
           <p className='username'><a target="_blank" href={`https:\/\/github.com/${issue.user.login}`}>{"@"+issue.user.login}</a></p>
+      </div>
 
-
-                    {comments_block}
-
-
+                    {commentsBlock}
         </div>
-        
-       </div>
        </div>
       </div>
     );
