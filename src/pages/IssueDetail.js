@@ -30,6 +30,15 @@ class IssueDetail extends React.Component {
       }
   }
 
+
+  parseUsername(str) {
+     let matches =  str.match(/([@]+[A-Za-z0-9-_]+)/g);
+       if(matches && matches.length){
+        return <a href={`https://github.com/${matches[0]}`} target="_blank">{matches[0]}</a>;
+       }else {
+        return null;
+       }
+    };
  
   fetchComments(url){
     ajax.get(url)
@@ -56,7 +65,9 @@ class IssueDetail extends React.Component {
     if(!issue){
       return <p>Issue Not Found </p>;
     }
-    let username = issue.user.login;
+    
+
+    let username = this.parseUsername(issue.body);
     
     let comments_block = <span/>;
 
