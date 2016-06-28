@@ -1,5 +1,5 @@
 {
-  "name": "twitter-take-home-assignment",
+  "name": "github assignment",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "nock": "^8.0.0",
     "superagent": "^2.0.0"
   }
 }
