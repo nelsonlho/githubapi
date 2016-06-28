@@ -32,13 +32,11 @@ class IssueDetail extends React.Component {
 
 
   parseUsername(str) {
-     let matches =  str.match(/([@]+[A-Za-z0-9-_]+)/g);
-       if(matches && matches.length){
-        return <a href={`https://github.com/${matches[0]}`} target="_blank">{matches[0]}</a>;
-       }else {
-        return null;
-       }
-    };
+     return str.replace(/([@]+[A-Za-z0-9-_]+)/g,user=>{
+         return `<a href="https://github.com/${user}" target="_blank">${user}</a>`;
+     });;
+       
+  }
  
 
   fetchComments(url){
@@ -70,9 +68,9 @@ class IssueDetail extends React.Component {
       return <p>Issue Not Found </p>;
     }
     
-    const {body} = issue;
+    let {body} = issue;
 
-    let username = this.parseUsername(body);
+    body = this.parseUsername(body);
     
 
     let commentsBlock = <span/>;
@@ -100,8 +98,7 @@ class IssueDetail extends React.Component {
         <div className="col-md-12" >
         <div className="issue issueDetail">
            <h3>{issue.title}</h3>
-           <p>{username}</p>
-           <div className="issueBody">{body}</div>
+           <div className="issueBody" dangerouslySetInnerHTML={{__html:body}}></div>
            <ul>{issue.labels.map((label,index)=>{
               let fontColor = 'black';
               if (label.name === "activerecord" || label.name === "needs work"
