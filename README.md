@@ -12,6 +12,7 @@ Next, please type in the following in the command prompt in the root folder:
 
 ```sh
 npm install
+npm install webpack --save-dev
 ```
 
 ## Usage
