@@ -98,6 +98,9 @@ export default class Issue extends React.Component {
  }
 
  shortenSummary(text, maxLength){
+   if(!text){
+     return "";
+  }
    let summary = text.substr(0, maxLength);
    summary = summary.substr(0, Math.min(summary.length, summary.lastIndexOf(" "))) + ' ...';
    return summary;
