@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 
-module.exports = {
+var config = {
   entry: [
     './src/index'
   ],
@@ -18,13 +18,19 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  devtool : "#source-map",
   devServer: {
     contentBase: './dist',
-    hot: true
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ]
 };
+
+if(process.env.NODE_ENV !== 'production'){
+  config.plugins.splice(1,0,new webpack.HotModuleReplacementPlugin());
+  config.devServer.hot = true;
+}
+
+module.exports = config ;
