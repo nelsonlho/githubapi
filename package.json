@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "test": "mocha test/**/*.js"
+    "start": "node server.js",
+    "test": "mocha test/**/*.js",
+    "postinstall": "webpack -p --config webpack.prod.config.js"
   },
   "keywords": [],
   "author": "",
