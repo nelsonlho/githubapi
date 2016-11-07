@@ -10,8 +10,9 @@ if(process.env.NODE_ENV !== 'production') {
   var webpack = require('webpack');
   var config = require('./webpack.config');
   var compiler = webpack(config);
-
-  app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
+  config.entry.unshift('webpack-hot-middleware/client');
+  console.log(config);
+  app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: config.output.publicPath }));
   app.use(webpackHotMiddleware(compiler));
 }
 
